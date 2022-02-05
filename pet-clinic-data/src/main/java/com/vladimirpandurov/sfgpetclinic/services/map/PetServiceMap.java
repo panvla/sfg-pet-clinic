@@ -3,9 +3,10 @@ package com.vladimirpandurov.sfgpetclinic.services.map;
 import com.vladimirpandurov.sfgpetclinic.model.Pet;
 import com.vladimirpandurov.sfgpetclinic.services.CrudService;
 import com.vladimirpandurov.sfgpetclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
 
 
