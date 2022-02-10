@@ -49,9 +49,6 @@
                 <version>2.6.3</version>
                 <executions>
                     <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
                         <configuration>
                             <skip>true</skip>
                         </configuration>
