@@ -10,5 +10,9 @@ public class indexController {
         System.out.println("Some message to say... 123556t6asdfaqw");
         return "index";
     }
+    @RequestMapping("/oups")
+    public String oupsHandler(){
+        return "notImplemented";
+    }
 
 }
