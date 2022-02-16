@@ -4,13 +4,15 @@ import com.vladimirpandurov.sfgpetclinic.model.Speciality;
 import com.vladimirpandurov.sfgpetclinic.model.Vet;
 import com.vladimirpandurov.sfgpetclinic.services.SpecialityService;
 import com.vladimirpandurov.sfgpetclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 @Service
+@Profile({"default", "map"})
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
-    private final SpecialityService specialtyService ;
+    private final SpecialityService specialtyService;
 
     public VetMapService(SpecialityService specialtyService) {
         this.specialtyService = specialtyService;
@@ -22,30 +24,32 @@ public class VetMapService extends AbstractMapService<Vet, Long> implements VetS
     }
 
     @Override
-    public void deleteById(Long id) {
-        super.deleteById(id);
+    public Vet findById(Long id) {
+        return super.findById(id);
     }
 
     @Override
-    public void delete(Vet vet) {
-        super.delete(vet);
-    }
+    public Vet save(Vet object) {
 
-    @Override
-    public Vet save(Vet vet) {
-        if(vet.getSpecialities().size()>0){
-            vet.getSpecialities().forEach(speciality -> {
+        if (object.getSpecialities().size() > 0){
+            object.getSpecialities().forEach(speciality -> {
                 if(speciality.getId() == null){
                     Speciality savedSpecialty = specialtyService.save(speciality);
                     speciality.setId(savedSpecialty.getId());
                 }
             });
         }
-        return super.save(vet.getId(), vet);
+
+        return super.save(object);
     }
 
     @Override
-    public Vet findById(Long id) {
-        return super.findById(id);
+    public void delete(Vet object) {
+        super.delete(object);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        super.deleteById(id);
     }
 }
