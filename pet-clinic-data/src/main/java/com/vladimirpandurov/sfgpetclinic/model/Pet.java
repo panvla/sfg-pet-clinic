@@ -3,6 +3,7 @@ package com.vladimirpandurov.sfgpetclinic.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="pets")
