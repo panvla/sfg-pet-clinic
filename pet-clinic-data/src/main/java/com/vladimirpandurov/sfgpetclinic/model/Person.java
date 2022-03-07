@@ -1,16 +1,17 @@
 package com.vladimirpandurov.sfgpetclinic.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @Setter
 @Getter
+@SuperBuilder
 @MappedSuperclass
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person extends BaseEntity{
 
     @Column(name="first_name")

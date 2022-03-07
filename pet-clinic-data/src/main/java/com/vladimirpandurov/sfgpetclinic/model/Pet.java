@@ -7,13 +7,14 @@ import java.util.Set;
 
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
 @Table(name="pets")
 public class Pet extends BaseEntity{
