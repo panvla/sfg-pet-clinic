@@ -2,6 +2,7 @@ package com.vladimirpandurov.sfgpetclinic.controllers;
 
 import com.vladimirpandurov.sfgpetclinic.model.Owner;
 import com.vladimirpandurov.sfgpetclinic.services.OwnerService;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,6 +16,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 import static org.hamcrest.Matchers.*;
@@ -49,11 +51,11 @@ class OwnerControllerTest {
 
     @Test
     void listOwners() throws Exception {
-        when(ownerService.findAll()).thenReturn(owners);
+        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(owners.stream().collect(Collectors.toList()));
         mockMvc.perform(get("/owners"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("owners/index"))
-                .andExpect(model().attribute("owners",hasSize(2)));
+                .andExpect(view().name("owners/ownersList"))
+                .andExpect(model().attribute("selections",hasSize(2)));
     }
 
     @Test
